@@ -3,9 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Tharaka's Chemical-Free Kirisamba</title>
-<style>
+<title>Tharaka's Rice Batches</title>
 
+<style>
 body {
     font-family: Arial, sans-serif;
     margin: 0;
@@ -15,7 +15,7 @@ body {
 }
 
 .container {
-    max-width: 800px;
+    max-width: 900px;
     margin: auto;
     padding: 20px;
 }
@@ -24,40 +24,46 @@ h1 {
     color: #2e5e2e;
 }
 
+.batch-card {
+    background: white;
+    padding: 20px;
+    margin: 30px 0;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+
 .progress-bar {
     width: 100%;
     background: #ddd;
     border-radius: 20px;
     overflow: hidden;
-    margin: 20px 0;
+    margin: 15px 0;
 }
 
 .progress {
-    height: 20px;
+    height: 18px;
     background: #2e8b57;
-    width: 0%;
 }
 
 .stage-container {
     display: flex;
     justify-content: space-between;
-    margin-top: 40px;
+    margin-top: 20px;
 }
 
 .stage {
     flex: 1;
-    padding: 10px;
-    font-size: 14px;
+    font-size: 13px;
 }
 
 .circle {
-    width: 60px;
-    height: 60px;
+    width: 50px;
+    height: 50px;
     margin: auto;
     border-radius: 50%;
     background: #ccc;
-    line-height: 60px;
-    font-size: 24px;
+    line-height: 50px;
+    font-size: 20px;
 }
 
 .completed .circle {
@@ -70,100 +76,107 @@ h1 {
     color: white;
 }
 
-.footer {
-    margin-top: 40px;
-    font-size: 14px;
-    color: #666;
-}
-
 .whatsapp-btn {
     display: inline-block;
-    padding: 12px 20px;
+    padding: 10px 18px;
     background: #25d366;
     color: white;
     text-decoration: none;
     border-radius: 6px;
-    margin-top: 20px;
+    margin-top: 15px;
 }
 
+.footer {
+    margin-top: 50px;
+    font-size: 13px;
+    color: #666;
+}
 </style>
 </head>
 <body>
 
 <div class="container">
+<h1>🌾 Chemical-Free Rice Batches</h1>
 
-<h1>🌾 Chemical-Free Kirisamba</h1>
-<p><strong>Batch #01 – Limited 120kg</strong></p>
-
-<h3>Batch Progress</h3>
-<p><strong id="reservedText">78kg Reserved / 120kg</strong></p>
-
-<div class="progress-bar">
-    <div class="progress" id="progressBar"></div>
-</div>
-
-<h3>Current Processing Stage</h3>
-
-<div class="stage-container">
-    <div class="stage" id="storage">
-        <div class="circle">🌾</div>
-        Storage
-    </div>
-
-    <div class="stage" id="milling">
-        <div class="circle">⚙️</div>
-        Milling
-    </div>
-
-    <div class="stage" id="packaging">
-        <div class="circle">📦</div>
-        Packaging
-    </div>
-
-    <div class="stage" id="delivery">
-        <div class="circle">🚚</div>
-        Delivery
-    </div>
-</div>
-
-<a class="whatsapp-btn" href="https://wa.me/94XXXXXXXXX" target="_blank">
-Order via WhatsApp
-</a>
+<div id="batchContainer"></div>
 
 <div class="footer">
-Next batch currently aging.<br>
-Estimated availability: May 2026
+Transparent. Limited. Chemical-Free.
 </div>
 
 </div>
 
 <script>
 
-// ======= MANUAL EDIT SECTION =======
-const totalKg = 120;
-const reservedKg = 78;
-const currentStage = "milling";
-// ===================================
+fetch("batches.json")
+.then(response => response.json())
+.then(batches => {
 
-document.getElementById("progressBar").style.width =
-    (reservedKg / totalKg) * 100 + "%";
+    const container = document.getElementById("batchContainer");
 
-const stages = ["storage", "milling", "packaging", "delivery"];
+    batches.forEach(batch => {
 
-let reachedCurrent = false;
+        const progressPercent = (batch.reservedKg / batch.totalKg) * 100;
 
-stages.forEach(stage => {
-    const element = document.getElementById(stage);
+        const stages = ["storage", "milling", "packaging", "delivery"];
 
-    if(stage === currentStage) {
-        element.classList.add("active");
-        reachedCurrent = true;
-    }
-    else if(!reachedCurrent) {
-        element.classList.add("completed");
-    }
+        let stageHTML = "";
+        let reachedCurrent = false;
+
+        stages.forEach(stage => {
+
+            let className = "stage";
+
+            if(stage === batch.stage) {
+                className += " active";
+                reachedCurrent = true;
+            }
+            else if(!reachedCurrent) {
+                className += " completed";
+            }
+
+            let emoji = {
+                storage: "🌾",
+                milling: "⚙️",
+                packaging: "📦",
+                delivery: "🚚"
+            }[stage];
+
+            stageHTML += `
+                <div class="${className}">
+                    <div class="circle">${emoji}</div>
+                    ${stage}
+                </div>
+            `;
+        });
+
+        const card = document.createElement("div");
+        card.className = "batch-card";
+
+        card.innerHTML = `
+            <h2>${batch.title} (${batch.batchId})</h2>
+            <p><strong>${batch.reservedKg}kg Reserved / ${batch.totalKg}kg</strong></p>
+
+            <div class="progress-bar">
+                <div class="progress" style="width:${progressPercent}%"></div>
+            </div>
+
+            <div class="stage-container">
+                ${stageHTML}
+            </div>
+
+            <p><strong>Estimated Delivery:</strong> ${batch.estimatedDelivery}</p>
+
+            ${batch.status === "active" ? 
+                `<a class="whatsapp-btn" href="https://wa.me/947XXXXXXXX" target="_blank">Reserve via WhatsApp</a>` 
+                : `<p><strong>✔ Completed Batch</strong></p>`
+            }
+        `;
+
+        container.appendChild(card);
+    });
+
 });
-
 </script>
 
 </body>

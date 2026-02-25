@@ -1,0 +1,20 @@
+[
+  {
+    "batchId": "B002",
+    "title": "Kirisamba – Aged",
+    "totalKg": 120,
+    "reservedKg": 78,
+    "stage": "milling",
+    "estimatedDelivery": "Feb 25 – Feb 27",
+    "status": "active"
+  },
+  {
+    "batchId": "B0001",
+    "title": "Kirisamba – First Batch",
+    "totalKg": 90,
+    "reservedKg": 90,
+    "stage": "delivery",
+    "estimatedDelivery": "Completed",
+    "status": "completed"
+  }
+]
