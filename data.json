@@ -8,7 +8,7 @@
   "status": "active",
 
   "stageDates": {
-    "storage": "2024-01-10",
+    "aging": "2024-01-10",
     "milling": "2024-01-15",
     "packaging": "",
     "delivery": ""
@@ -19,6 +19,6 @@
     "reservedKg": 140
   },
 
-  "_guide_stage_values": "Allowed: storage, milling, packaging, delivery",
+  "_guide_stage_values": "Allowed: aging, milling, packaging, delivery",
   "_guide_status_values": "Allowed: active, completed"
 }

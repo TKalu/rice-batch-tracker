@@ -15,7 +15,7 @@
 <style>
 
 :root {
-  --deep-green: #1B4332;
+  --deep-green: #e6b42c;
   --soft-beige: #F5F3EE;
   --muted-grey: #6C757D;
 }
@@ -102,8 +102,8 @@ body {
 }
 
 .stage-icon {
-  width: 32px;
-  height: 32px;
+  width: 110px;
+  height: 110px;
   margin: auto;
   border-radius: 50%;
   background: white;
@@ -117,8 +117,8 @@ body {
 }
 
 .timeline-icon {
-  width: 48px;
-  height: 48px;
+  width: 85px;
+  height: 85px;
   object-fit: contain;
   display: block;
 }
@@ -261,16 +261,16 @@ footer {
 
 <div class="section fade-in">
 
-  <h2 class="section-title">Production Journey</h2>
+  <h2 class="section-title">Batch: H1-B1</h2>
 
   <div class="timeline">
 
-    <div class="stage" id="storage">
+    <div class="stage" id="aging">
       <div class="stage-icon">
-        <img src="assets/icons/aging.png" alt="Storage stage" class="timeline-icon">
+        <img src="assets/icons/aging.png" alt="Aging stage" class="timeline-icon">
       </div>
-      <h4>Storage</h4>
-      <p id="storageDate"></p>
+      <h4>Aging</h4>
+      <p id="agingDate"></p>
     </div>
 
     <div class="stage" id="milling">
@@ -323,11 +323,11 @@ fetch("data.json?v=" + new Date().getTime())
 .then(response => response.json())
 .then(data => {
 
-  const validStages = ["storage", "milling", "packaging", "delivery"];
+  const validStages = ["aging", "milling", "packaging", "delivery"];
 
   if (!validStages.includes(data.stage)) {
     console.warn("Invalid stage detected.");
-    data.stage = "storage";
+    data.stage = "aging";
   }
 
   /* HERO IMAGE */
@@ -344,8 +344,8 @@ fetch("data.json?v=" + new Date().getTime())
 
   /* STAGE DATES */
 
-  document.getElementById("storageDate").textContent =
-    data.stageDates.storage || "";
+  document.getElementById("agingDate").textContent =
+    data.stageDates.aging || "";
 
   document.getElementById("millingDate").textContent =
     data.stageDates.milling || "";
@@ -358,7 +358,7 @@ fetch("data.json?v=" + new Date().getTime())
 
   /* TIMELINE STATES */
 
-  const stages = ["storage", "milling", "packaging", "delivery"];
+  const stages = ["aging", "milling", "packaging", "delivery"];
   const currentIndex = stages.indexOf(data.stage);
 
   stages.forEach((stage, index) => {
