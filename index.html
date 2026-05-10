@@ -3,180 +3,403 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Tharaka's Rice Batches</title>
+
+<title>Batch Transparency Portal</title>
+
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+<meta http-equiv="Pragma" content="no-cache" />
+<meta http-equiv="Expires" content="0" />
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
 
 <style>
+
+:root {
+  --deep-green: #1B4332;
+  --soft-beige: #F5F3EE;
+  --muted-grey: #6C757D;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    background: #f8f8f6;
-    color: #333;
-    text-align: center;
+  font-family: 'Inter', sans-serif;
+  background-color: var(--soft-beige);
+  color: #222;
+  line-height: 1.6;
 }
 
-.container {
-    max-width: 900px;
-    margin: auto;
-    padding: 20px;
+/* HERO */
+
+.hero {
+  height: 48vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: white;
+  background-size: cover;
+  background-position: center;
+  padding: 20px;
 }
 
-h1 {
-    color: #2e5e2e;
+.hero-content h1 {
+  font-size: 3rem;
+  font-weight: 700;
+  margin-bottom: 10px;
 }
 
-.batch-card {
-    background: white;
-    padding: 20px;
-    margin: 30px 0;
-    border-radius: 10px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+.hero-content p {
+  font-size: 1.1rem;
+  font-weight: 300;
 }
 
-.progress-bar {
-    width: 100%;
-    background: #ddd;
-    border-radius: 20px;
-    overflow: hidden;
-    margin: 15px 0;
+/* SECTION */
+
+.section {
+  padding: 60px 20px;
+  max-width: 1100px;
+  margin: auto;
 }
 
-.progress {
-    height: 18px;
-    background: #2e8b57;
+.section-title {
+  text-align: center;
+  margin-bottom: 10px;
+  font-size: 2rem;
 }
 
-.stage-container {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 20px;
+/* TIMELINE */
+
+.timeline {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 50px;
+  position: relative;
+}
+
+.timeline::before {
+  content: "";
+  position: absolute;
+  top: 35px;
+  left: 8%;
+  right: 8%;
+  height: 4px;
+  background: #d9d9d9;
+  border-radius: 10px;
+  z-index: 0;
 }
 
 .stage {
-    flex: 1;
-    font-size: 13px;
+  text-align: center;
+  position: relative;
+  z-index: 1;
+  width: 25%;
 }
 
-.circle {
-    width: 50px;
-    height: 50px;
-    margin: auto;
-    border-radius: 50%;
-    background: #ccc;
-    line-height: 50px;
-    font-size: 20px;
+.stage-icon {
+  width: 32px;
+  height: 32px;
+  margin: auto;
+  border-radius: 50%;
+  background: white;
+  border: 3px solid #d9d9d9;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 12px;
+  transition: all 0.3s ease;
+  font-size: 1.2rem;
 }
 
-.completed .circle {
-    background: #1b5e20;
-    color: white;
+.timeline-icon {
+  width: 48px;
+  height: 48px;
+  object-fit: contain;
+  display: block;
 }
 
-.active .circle {
-    background: #4caf50;
-    color: white;
+/* COMPLETED */
+
+.stage.completed .stage-icon {
+  background: var(--deep-green);
+  border-color: var(--deep-green);
+  color: white;
 }
 
-.whatsapp-btn {
-    display: inline-block;
-    padding: 10px 18px;
-    background: #25d366;
-    color: white;
-    text-decoration: none;
-    border-radius: 6px;
-    margin-top: 15px;
+/* ACTIVE */
+
+.stage.active .stage-icon {
+  border-color: var(--deep-green);
+  box-shadow: 0 0 18px rgba(27, 67, 50, 0.35);
+  transform: scale(1.05);
 }
 
-.footer {
-    margin-top: 50px;
-    font-size: 13px;
-    color: #666;
+/* UPCOMING */
+
+.stage.upcoming .stage-icon {
+  opacity: 0.45;
 }
+
+.stage h4 {
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.stage p {
+  font-size: 0.9rem;
+  color: var(--muted-grey);
+}
+
+/* RESERVATION CARD */
+
+.reservation-card {
+  background: white;
+  padding: 30px;
+  border-radius: 14px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+  margin-top: 50px;
+}
+
+.reservation-card h3 {
+  margin-bottom: 15px;
+  font-size: 1.2rem;
+}
+
+.progress-bar {
+  width: 100%;
+  height: 14px;
+  background: #ececec;
+  border-radius: 10px;
+  overflow: hidden;
+  margin-bottom: 15px;
+}
+
+.progress-fill {
+  height: 100%;
+  width: 0%;
+  background: var(--deep-green);
+  transition: width 1s ease;
+}
+
+.reservation-text {
+  color: var(--muted-grey);
+  font-size: 0.95rem;
+}
+
+/* FOOTER */
+
+footer {
+  text-align: center;
+  padding: 30px;
+  background: var(--deep-green);
+  color: white;
+  margin-top: 60px;
+  font-size: 0.9rem;
+}
+
+/* FADE IN */
+
+.fade-in {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.8s ease;
+}
+
+.fade-in.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* MOBILE */
+
+@media(max-width: 768px) {
+
+  .hero-content h1 {
+    font-size: 2.2rem;
+  }
+
+  .timeline {
+    gap: 10px;
+  }
+
+  .stage-icon {
+    width: 58px;
+    height: 58px;
+    font-size: 1rem;
+  }
+
+  .timeline-icon {
+    width: 40px;
+    height: 40px;
+  }
+
+  .stage h4 {
+    font-size: 0.9rem;
+  }
+
+  .stage p {
+    font-size: 0.75rem;
+  }
+}
+
 </style>
 </head>
+
 <body>
 
-<div class="container">
-<h1>🌾 Chemical-Free Rice Batches</h1>
-
-<div id="batchContainer"></div>
-
-<div class="footer">
-Transparent. Limited. Chemical-Free.
+<div class="hero">
+  <div class="hero-content">
+    <h1 id="batchId">Batch ID</h1>
+    <p id="harvestSeason"></p>
+  </div>
 </div>
 
+<div class="section fade-in">
+
+  <h2 class="section-title">Production Journey</h2>
+
+  <div class="timeline">
+
+    <div class="stage" id="storage">
+      <div class="stage-icon">
+        <img src="assets/icons/aging.png" alt="Storage stage" class="timeline-icon">
+      </div>
+      <h4>Storage</h4>
+      <p id="storageDate"></p>
+    </div>
+
+    <div class="stage" id="milling">
+      <div class="stage-icon">
+        <img src="assets/icons/milling.png" alt="Milling stage" class="timeline-icon">
+      </div>
+      <h4>Milling</h4>
+      <p id="millingDate"></p>
+    </div>
+
+    <div class="stage" id="packaging">
+      <div class="stage-icon">
+        <img src="assets/icons/packaging.png" alt="Packaging stage" class="timeline-icon">
+      </div>
+      <h4>Packaging</h4>
+      <p id="packagingDate"></p>
+    </div>
+
+    <div class="stage" id="delivery">
+      <div class="stage-icon">
+        <img src="assets/icons/delivery.png" alt="Delivery stage" class="timeline-icon">
+      </div>
+      <h4>Delivery</h4>
+      <p id="deliveryDate"></p>
+    </div>
+
+  </div>
+
+  <div class="reservation-card">
+
+    <h3>Batch Reservation</h3>
+
+    <div class="progress-bar">
+      <div class="progress-fill" id="reservationBar"></div>
+    </div>
+
+    <p class="reservation-text" id="reservationText"></p>
+
+  </div>
+
 </div>
+
+<footer>
+  Transparent. Limited. Chemical-Free.
+</footer>
 
 <script>
 
-fetch("batches.json")
+fetch("data.json?v=" + new Date().getTime())
 .then(response => response.json())
-.then(batches => {
+.then(data => {
 
-    const container = document.getElementById("batchContainer");
+  const validStages = ["storage", "milling", "packaging", "delivery"];
 
-    batches.forEach(batch => {
+  if (!validStages.includes(data.stage)) {
+    console.warn("Invalid stage detected.");
+    data.stage = "storage";
+  }
 
-        const progressPercent = (batch.reservedKg / batch.totalKg) * 100;
+  /* HERO IMAGE */
 
-        const stages = ["storage", "milling", "packaging", "delivery"];
+  document.querySelector(".hero").style.backgroundImage =
+    `linear-gradient(rgba(0,0,0,0.20), rgba(0,0,0,0.10)), url('${data.backgroundImage}')`;
 
-        let stageHTML = "";
-        let reachedCurrent = false;
+  /* HERO TEXT */
 
-        stages.forEach(stage => {
+  document.getElementById("batchId").textContent = data.batchId;
 
-            let className = "stage";
+  document.getElementById("harvestSeason").textContent =
+    "Harvest Season: " + data.harvestSeason;
 
-            if(stage === batch.stage) {
-                className += " active";
-                reachedCurrent = true;
-            }
-            else if(!reachedCurrent) {
-                className += " completed";
-            }
+  /* STAGE DATES */
 
-            let emoji = {
-                storage: "🌾",
-                milling: "⚙️",
-                packaging: "📦",
-                delivery: "🚚"
-            }[stage];
+  document.getElementById("storageDate").textContent =
+    data.stageDates.storage || "";
 
-            stageHTML += `
-                <div class="${className}">
-                    <div class="circle">${emoji}</div>
-                    ${stage}
-                </div>
-            `;
-        });
+  document.getElementById("millingDate").textContent =
+    data.stageDates.milling || "";
 
-        const card = document.createElement("div");
-        card.className = "batch-card";
+  document.getElementById("packagingDate").textContent =
+    data.stageDates.packaging || "";
 
-        card.innerHTML = `
-            <h2>${batch.title} (${batch.batchId})</h2>
-            <p><strong>${batch.reservedKg}kg Reserved / ${batch.totalKg}kg</strong></p>
+  document.getElementById("deliveryDate").textContent =
+    data.stageDates.delivery || "";
 
-            <div class="progress-bar">
-                <div class="progress" style="width:${progressPercent}%"></div>
-            </div>
+  /* TIMELINE STATES */
 
-            <div class="stage-container">
-                ${stageHTML}
-            </div>
+  const stages = ["storage", "milling", "packaging", "delivery"];
+  const currentIndex = stages.indexOf(data.stage);
 
-            <p><strong>Estimated Delivery:</strong> ${batch.estimatedDelivery}</p>
+  stages.forEach((stage, index) => {
 
-            ${batch.status === "active" ? 
-                `<a class="whatsapp-btn" href="https://wa.me/947XXXXXXXX" target="_blank">Reserve via WhatsApp</a>` 
-                : `<p><strong>✔ Completed Batch</strong></p>`
-            }
-        `;
+    const element = document.getElementById(stage);
 
-        container.appendChild(card);
-    });
+    if (data.status === "completed") {
+      element.classList.add("completed");
+    }
+    else if (index < currentIndex) {
+      element.classList.add("completed");
+    }
+    else if (index === currentIndex) {
+      element.classList.add("active");
+    }
+    else {
+      element.classList.add("upcoming");
+    }
+  });
 
-});
+  /* RESERVATION */
+
+  const total = data.stock.totalKg;
+  const reserved = data.stock.reservedKg;
+  const remaining = total - reserved;
+
+  const percent = (reserved / total) * 100;
+
+  document.getElementById("reservationBar").style.width =
+    percent + "%";
+
+  document.getElementById("reservationText").textContent =
+    `Reserved: ${reserved} kg | Remaining: ${remaining} kg | Total: ${total} kg`;
+
+  /* ANIMATION */
+
+  document.querySelector(".fade-in").classList.add("visible");
+
+})
+.catch(error => console.error("Error loading data:", error));
+
 </script>
 
 </body>

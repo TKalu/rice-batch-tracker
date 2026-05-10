@@ -1,0 +1,24 @@
+{
+  "backgroundImage": "background.png",
+
+  "batchId": "Kirisamba – Aged Batch",
+  "harvestSeason": "Maha 2024",
+
+  "stage": "milling",
+  "status": "active",
+
+  "stageDates": {
+    "storage": "2024-01-10",
+    "milling": "2024-01-15",
+    "packaging": "",
+    "delivery": ""
+  },
+
+  "stock": {
+    "totalKg": 250,
+    "reservedKg": 140
+  },
+
+  "_guide_stage_values": "Allowed: storage, milling, packaging, delivery",
+  "_guide_status_values": "Allowed: active, completed"
+}
