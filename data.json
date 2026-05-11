@@ -10,19 +10,19 @@
     {
       "batchId": "Kirisamba-H1-B2",
       "type": "current",
-      "stage": "aging",
+      "stage": "milling",
       "status": "active",
 
       "stageDates": {
-        "aging": "2024-01-10",
-        "milling": "2024-01-15",
+        "aging": "",
+        "milling": "2026-05-03",
         "packaging": "",
         "delivery": ""
       },
 
       "stock": {
-        "totalKg": 250,
-        "reservedKg": 140
+        "totalKg": 90,
+        "reservedKg": 70
       }
     },
 
