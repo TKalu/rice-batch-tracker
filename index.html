@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -10,12 +11,12 @@
 <meta http-equiv="Pragma" content="no-cache" />
 <meta http-equiv="Expires" content="0" />
 
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
 <style>
 
 :root {
-  --deep-green: #e6b42c;
+  --accent: #c89b2b;
   --soft-beige: #F5F3EE;
   --muted-grey: #6C757D;
 }
@@ -28,7 +29,7 @@
 
 body {
   font-family: 'Inter', sans-serif;
-  background-color: var(--soft-beige);
+  background: var(--soft-beige);
   color: #222;
   line-height: 1.6;
 }
@@ -58,18 +59,58 @@ body {
   font-weight: 300;
 }
 
-/* SECTION */
+/* BATCH CONTAINER */
 
-.section {
-  padding: 60px 20px;
+.batch-container {
   max-width: 1100px;
   margin: auto;
+  padding: 70px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
 }
 
-.section-title {
-  text-align: center;
-  margin-bottom: 10px;
-  font-size: 2rem;
+/* BATCH CARD */
+
+.batch-card {
+  background: white;
+  border-radius: 24px;
+  padding: 50px 35px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+  transition: all 0.4s ease;
+}
+
+.batch-card.featured {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.batch-card.secondary {
+  opacity: 0.72;
+  transform: scale(0.98);
+}
+
+.batch-card.archive {
+  opacity: 0.55;
+}
+
+/* HEADER */
+
+.batch-header {
+  margin-bottom: 45px;
+}
+
+.batch-label {
+  font-size: 0.72rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--muted-grey);
+  margin-bottom: 8px;
+}
+
+.batch-title {
+  font-size: 1.9rem;
+  font-weight: 600;
 }
 
 /* TIMELINE */
@@ -78,8 +119,8 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-top: 50px;
   position: relative;
+  margin-top: 10px;
 }
 
 .timeline::before {
@@ -88,8 +129,8 @@ body {
   top: 35px;
   left: 8%;
   right: 8%;
-  height: 4px;
-  background: #d9d9d9;
+  height: 3px;
+  background: rgba(0,0,0,0.08);
   border-radius: 10px;
   z-index: 0;
 }
@@ -111,9 +152,8 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: 12px;
-  transition: all 0.3s ease;
-  font-size: 1.2rem;
+  margin-bottom: 14px;
+  transition: all 0.35s ease;
 }
 
 .timeline-icon {
@@ -126,83 +166,85 @@ body {
 /* COMPLETED */
 
 .stage.completed .stage-icon {
-  background: var(--deep-green);
-  border-color: var(--deep-green);
-  color: white;
+  background: var(--accent);
+  border-color: var(--accent);
+}
+
+.stage.completed .timeline-icon {
+  filter: brightness(0) invert(1);
 }
 
 /* ACTIVE */
 
 .stage.active .stage-icon {
-  border-color: var(--deep-green);
-  box-shadow: 0 0 18px rgba(27, 67, 50, 0.35);
+  border-color: var(--accent);
+  box-shadow: 0 0 20px rgba(230,180,44,0.25);
   transform: scale(1.05);
 }
 
 /* UPCOMING */
 
 .stage.upcoming .stage-icon {
-  opacity: 0.45;
+  opacity: 0.4;
 }
 
 .stage h4 {
+  font-size: 1rem;
   font-weight: 600;
-  margin-bottom: 4px;
+  margin-bottom: 5px;
 }
 
 .stage p {
-  font-size: 0.9rem;
+  font-size: 0.88rem;
   color: var(--muted-grey);
 }
 
-/* RESERVATION CARD */
+/* RESERVATION */
 
 .reservation-card {
-  background: white;
-  padding: 30px;
-  border-radius: 14px;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.05);
   margin-top: 50px;
+  padding-top: 10px;
 }
 
-.reservation-card h3 {
-  margin-bottom: 15px;
-  font-size: 1.2rem;
+.reservation-title {
+  font-size: 1rem;
+  margin-bottom: 18px;
+  font-weight: 600;
 }
 
 .progress-bar {
   width: 100%;
-  height: 14px;
+  height: 12px;
   background: #ececec;
-  border-radius: 10px;
+  border-radius: 999px;
   overflow: hidden;
-  margin-bottom: 15px;
+  margin-bottom: 14px;
 }
 
 .progress-fill {
   height: 100%;
   width: 0%;
-  background: var(--deep-green);
+  background: var(--accent);
   transition: width 1s ease;
 }
 
 .reservation-text {
+  font-size: 0.92rem;
   color: var(--muted-grey);
-  font-size: 0.95rem;
 }
 
 /* FOOTER */
 
 footer {
   text-align: center;
-  padding: 30px;
-  background: var(--deep-green);
+  padding: 35px;
+  margin-top: 40px;
+  background: var(--accent);
   color: white;
-  margin-top: 60px;
   font-size: 0.9rem;
 }
 
-/* FADE IN */
+/* FADE */
 
 .fade-in {
   opacity: 0;
@@ -223,6 +265,10 @@ footer {
     font-size: 2.2rem;
   }
 
+  .batch-card {
+    padding: 35px 20px;
+  }
+
   .timeline {
     gap: 10px;
   }
@@ -230,21 +276,29 @@ footer {
   .stage-icon {
     width: 58px;
     height: 58px;
-    font-size: 1rem;
   }
 
   .timeline-icon {
-    width: 40px;
-    height: 40px;
+    width: 38px;
+    height: 38px;
   }
 
   .stage h4 {
-    font-size: 0.9rem;
+    font-size: 0.82rem;
   }
 
   .stage p {
-    font-size: 0.75rem;
+    font-size: 0.7rem;
   }
+
+  .timeline::before {
+    top: 28px;
+  }
+
+  .batch-title {
+    font-size: 1.4rem;
+  }
+
 }
 
 </style>
@@ -252,66 +306,20 @@ footer {
 
 <body>
 
+<!-- HERO -->
+
 <div class="hero">
   <div class="hero-content">
-    <h1 id="batchId">Batch ID</h1>
-    <p id="harvestSeason"></p>
+    <h1 id="heroTitle">Naturally Aged Rice</h1>
+    <p id="heroSubtitle">Harvest Season</p>
   </div>
 </div>
 
-<div class="section fade-in">
+<!-- BATCHES -->
 
-  <h2 class="section-title">Batch: H1-B1</h2>
+<div id="batchContainer" class="batch-container fade-in"></div>
 
-  <div class="timeline">
-
-    <div class="stage" id="aging">
-      <div class="stage-icon">
-        <img src="assets/icons/aging.png" alt="Aging stage" class="timeline-icon">
-      </div>
-      <h4>Aging</h4>
-      <p id="agingDate"></p>
-    </div>
-
-    <div class="stage" id="milling">
-      <div class="stage-icon">
-        <img src="assets/icons/milling.png" alt="Milling stage" class="timeline-icon">
-      </div>
-      <h4>Milling</h4>
-      <p id="millingDate"></p>
-    </div>
-
-    <div class="stage" id="packaging">
-      <div class="stage-icon">
-        <img src="assets/icons/packaging.png" alt="Packaging stage" class="timeline-icon">
-      </div>
-      <h4>Packaging</h4>
-      <p id="packagingDate"></p>
-    </div>
-
-    <div class="stage" id="delivery">
-      <div class="stage-icon">
-        <img src="assets/icons/delivery.png" alt="Delivery stage" class="timeline-icon">
-      </div>
-      <h4>Delivery</h4>
-      <p id="deliveryDate"></p>
-    </div>
-
-  </div>
-
-  <div class="reservation-card">
-
-    <h3>Batch Reservation</h3>
-
-    <div class="progress-bar">
-      <div class="progress-fill" id="reservationBar"></div>
-    </div>
-
-    <p class="reservation-text" id="reservationText"></p>
-
-  </div>
-
-</div>
+<!-- FOOTER -->
 
 <footer>
   Transparent. Limited. Chemical-Free.
@@ -323,79 +331,153 @@ fetch("data.json?v=" + new Date().getTime())
 .then(response => response.json())
 .then(data => {
 
-  const validStages = ["aging", "milling", "packaging", "delivery"];
-
-  if (!validStages.includes(data.stage)) {
-    console.warn("Invalid stage detected.");
-    data.stage = "aging";
-  }
-
-  /* HERO IMAGE */
+  /* HERO */
 
   document.querySelector(".hero").style.backgroundImage =
-    `linear-gradient(rgba(0,0,0,0.20), rgba(0,0,0,0.10)), url('${data.backgroundImage}')`;
+    `linear-gradient(rgba(0,0,0,0.20), rgba(0,0,0,0.10)), url('${data.hero.backgroundImage}')`;
 
-  /* HERO TEXT */
+  document.getElementById("heroTitle").textContent =
+    data.hero.title;
 
-  document.getElementById("batchId").textContent = data.batchId;
+  document.getElementById("heroSubtitle").textContent =
+    data.hero.subtitle;
 
-  document.getElementById("harvestSeason").textContent =
-    "Harvest Season: " + data.harvestSeason;
+  /* BATCH RENDERING */
 
-  /* STAGE DATES */
-
-  document.getElementById("agingDate").textContent =
-    data.stageDates.aging || "";
-
-  document.getElementById("millingDate").textContent =
-    data.stageDates.milling || "";
-
-  document.getElementById("packagingDate").textContent =
-    data.stageDates.packaging || "";
-
-  document.getElementById("deliveryDate").textContent =
-    data.stageDates.delivery || "";
-
-  /* TIMELINE STATES */
+  const container = document.getElementById("batchContainer");
 
   const stages = ["aging", "milling", "packaging", "delivery"];
-  const currentIndex = stages.indexOf(data.stage);
 
-  stages.forEach((stage, index) => {
+  data.batches.forEach(batch => {
 
-    const element = document.getElementById(stage);
+    let cardClass = "secondary";
+    let label = "Future Batch";
 
-    if (data.status === "completed") {
-      element.classList.add("completed");
+    if (batch.type === "current") {
+      cardClass = "featured";
+      label = "Current Batch";
     }
-    else if (index < currentIndex) {
-      element.classList.add("completed");
+
+    if (batch.type === "archive") {
+      cardClass = "archive";
+      label = "Completed Batch";
     }
-    else if (index === currentIndex) {
-      element.classList.add("active");
+
+    const currentIndex = stages.indexOf(batch.stage);
+
+    const stageHTML = stages.map((stage, index) => {
+
+      let stateClass = "upcoming";
+
+      if (batch.status === "completed") {
+        stateClass = "completed";
+      }
+      else if (index < currentIndex) {
+        stateClass = "completed";
+      }
+      else if (index === currentIndex) {
+        stateClass = "active";
+      }
+
+      const iconMap = {
+        aging: "aging.png",
+        milling: "milling.png",
+        packaging: "packaging.png",
+        delivery: "delivery.png"
+      };
+
+      return `
+        <div class="stage ${stateClass}">
+          <div class="stage-icon">
+            <img
+              src="assets/icons/${iconMap[stage]}"
+              alt="${stage}"
+              class="timeline-icon"
+            >
+          </div>
+
+          <h4>${stage.charAt(0).toUpperCase() + stage.slice(1)}</h4>
+
+          <p>${batch.stageDates[stage] || ""}</p>
+        </div>
+      `;
+
+    }).join("");
+
+    /* RESERVATION */
+
+    let reservationHTML = "";
+
+    if (batch.stock) {
+
+      const total = batch.stock.totalKg;
+      const reserved = batch.stock.reservedKg;
+      const remaining = total - reserved;
+      const percent = (reserved / total) * 100;
+
+      reservationHTML = `
+        <div class="reservation-card">
+
+          <div class="reservation-title">
+            Batch Reservation
+          </div>
+
+          <div class="progress-bar">
+            <div
+              class="progress-fill"
+              style="width:${percent}%">
+            </div>
+          </div>
+
+          <p class="reservation-text">
+            Reserved: ${reserved} kg
+            &nbsp;|&nbsp;
+            Remaining: ${remaining} kg
+            &nbsp;|&nbsp;
+            Total: ${total} kg
+          </p>
+
+        </div>
+      `;
     }
-    else {
-      element.classList.add("upcoming");
-    }
+
+    /* CARD */
+
+    const card = document.createElement("div");
+
+    card.className = `batch-card ${cardClass}`;
+
+    card.innerHTML = `
+
+      <div class="batch-header">
+
+        <div class="batch-label">
+          ${label}
+        </div>
+
+        <div class="batch-title">
+          ${batch.batchId}
+        </div>
+
+      </div>
+
+      <div class="timeline">
+        ${stageHTML}
+      </div>
+
+      ${reservationHTML}
+
+    `;
+
+    container.appendChild(card);
+
   });
-
-  /* RESERVATION */
-
-  const total = data.stock.totalKg;
-  const reserved = data.stock.reservedKg;
-  const remaining = total - reserved;
-
-  const percent = (reserved / total) * 100;
-
-  document.getElementById("reservationBar").style.width =
-    percent + "%";
-
-  document.getElementById("reservationText").textContent =
-    `Reserved: ${reserved} kg | Remaining: ${remaining} kg | Total: ${total} kg`;
 
   /* ANIMATION */
 
-  document.querySelector(".fade-in").classList.add("visible");
+  setTimeout(() => {
+    document.querySelector(".fade-in").classList.add("visible");
+  }, 100);
 
 })
 .catch(error => console.error("Error loading data:", error));

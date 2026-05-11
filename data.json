@@ -1,24 +1,68 @@
 {
-  "backgroundImage": "background.png",
-
-  "batchId": "Kirisamba – Aged Batch",
-  "harvestSeason": "Maha 2024",
-
-  "stage": "milling",
-  "status": "active",
-
-  "stageDates": {
-    "aging": "2024-01-10",
-    "milling": "2024-01-15",
-    "packaging": "",
-    "delivery": ""
+  "hero": {
+    "backgroundImage": "assets/images/background.png",
+    "title": "Kirisamba – Naturally Aged Rice",
+    "subtitle": "Maha 2024 Harvest"
   },
 
-  "stock": {
-    "totalKg": 250,
-    "reservedKg": 140
-  },
+  "batches": [
 
-  "_guide_stage_values": "Allowed: aging, milling, packaging, delivery",
-  "_guide_status_values": "Allowed: active, completed"
+    {
+      "batchId": "Kirisamba-H1-B2",
+      "type": "current",
+      "stage": "aging",
+      "status": "active",
+
+      "stageDates": {
+        "aging": "2024-01-10",
+        "milling": "2024-01-15",
+        "packaging": "",
+        "delivery": ""
+      },
+
+      "stock": {
+        "totalKg": 250,
+        "reservedKg": 140
+      }
+    },
+
+    {
+      "batchId": "Kirisamba-2026-02-07",
+      "type": "aging",
+      "stage": "aging",
+      "status": "active",
+
+      "stageDates": {
+        "aging": "2024-02-07",
+        "milling": "",
+        "packaging": "",
+        "delivery": ""
+      },
+
+      "stock": {
+        "totalKg": 300,
+        "reservedKg": 0
+      }
+    },
+    
+    {
+      "batchId": "Kirisamba-H1-B1",
+      "type": "archive",
+      "stage": "delivery",
+      "status": "completed",
+
+      "stageDates": {
+        "aging": "",
+        "milling": "2026-01-15",
+        "packaging": "2024-01-23",
+        "delivery": "2024-01-27"
+      },
+
+      "stock": {
+        "totalKg": 90,
+        "reservedKg": 90
+      }
+    }
+
+  ]
 }
